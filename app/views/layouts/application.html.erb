@@ -12,15 +12,8 @@
 
   <body>
     <header>
-      <haeder>
-        <%= render 'layouts/header' %>
-      </haeder>
+      <%=render "layouts/header" %>
     </header>
-    <main>
-      <%= yield %>
-    </main>
-    <hooter>
-      <div class="row border-bottom border-dark" style="height:100px";></div>
-    </hooter>
+    <%= yield %>
   </body>
 </html>
