@@ -5,12 +5,12 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
-  
+
 
  scope module: :public do
   root to: 'homes#top'
   get "/about"=>"homes#about"
-  resources :products, only: [:index, :show]
+  resources :items, only: [:index, :show]
   resource :customers,only: [] do
     get "my_page"=>"customers#show"
     get "information/edit"=>"customers#edit"
@@ -39,13 +39,13 @@ Rails.application.routes.draw do
   end
 end
 
-  
+
   # 管理者用
   # URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
   }
-  
+
   namespace :admin do
     root to: 'homes#top'
     resources :items, except: [:destroy]
