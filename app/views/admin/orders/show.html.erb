@@ -1,0 +1,93 @@
+
+<div class="container px-5 py-5">
+  <div class="row mb-3">
+    <div class="col-md-1"></div>
+    <div class="col-md-10"><h4>注文履歴詳細</h4></div>
+    <div class="col-md-1"></div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-md-1"></div>
+    <div class="col-md-11">
+      <table class="table table-borderless">
+        <tr>
+          <th>購入者</th>
+          <td><%= link_to @order.customer.name, manager_customer_path(@customer) %></td>
+        </tr>
+        <tr>
+          <th>注文日</th>
+          <td><%= @order.created_at.to_s(:datetime_jp) %></td>
+        </tr>
+        <tr>
+          <th>配送先</th>
+          <td>
+            〒<%= @order.postal_code%><%= @order.address %><br>
+            <%= @order.name %>
+          </td>
+        </tr>
+        <tr>
+          <th>支払い方法</th>
+          <td><%= @order.payment_method_i18n %></td>
+        </tr>
+        <tr>
+          <th>注文ステータス</th>
+          <td>
+            <%= form_with model:@order, url: manager_order_path, method: :patch, local:true do |f| %>
+            <%= f.select :status , Order.statuses.keys, class: "status" %>&ensp;
+            <%= f.submit '更新'  ,class: "btn btn-success" %>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-md-1"></div>
+    <div class="col-md-8">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>商品名</th>
+            <th>単価(税込)</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th>製作ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order.order_products.each do |f| %>
+          <tr>
+            <td><%= f.product.name %></td>
+            <td><%= tax_price(f.product.price) %></td>
+            <td><%= f.quantity %></td>
+            <td><%= sub_price(f) %></td>
+            <td>
+              <%= form_with model:f , url: manager_order_product_path(f), method: :patch, local:true do |form| %>
+              <%= form.select :making_status, OrderProduct.making_statuses.keys, class: "making_status"  %>&ensp;
+              <%= form.submit '更新'  ,class: "btn btn-success" %>
+            </td>
+          </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-3">
+      <table class="table table-borderless">
+        <tr>
+          <th>商品合計</th>
+
+          <td><%= @order.total_payment - @order.postage %></td>
+
+        </tr>
+        <tr>
+          <th>送料</th>
+          <td><%= @order.postage.to_s(:delimited) %></td>
+        </tr>
+        <tr>
+          <th>請求金額</th>
+          <td><%=@order.total_payment.to_s(:delimited) %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

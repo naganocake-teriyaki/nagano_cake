@@ -1,10 +1,9 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger">
    <div class="container px-5">
      <!-- navbarの左側 -->
      <div class="row">
          <!-- 仮の画像を配置 -->
          <a class="navbar-brand p-1" href="/"><!--NaganoCake<br>-->
-           <img  src="/assets/logo3.png" alt="..." width="130px" height="100px" />
          </a>
       </div>
       <% if customer_signed_in? %>
@@ -37,8 +36,3 @@
          <li class="nav-item nav-link"><%= link_to "ログイン", new_customer_session_path, class:"link btn btn-light" %></li>
        <% end %>
       </ul>
-     </div>
-   </div>
- </nav>
- <!-- 検索機能は別のブランチで作成 -->
- <%#= render 'public/searches/form' %>
