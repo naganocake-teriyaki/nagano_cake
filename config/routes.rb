@@ -10,7 +10,7 @@ Rails.application.routes.draw do
  scope module: :public do
   root to: 'homes#top'
   get "/about"=>"homes#about"
-  resources :products, only: [:index, :show]
+  resources :items, only: [:index, :show]
   resource :customers,only: [] do
     get "my_page"=>"customers#show"
     get "information/edit"=>"customers#edit"
