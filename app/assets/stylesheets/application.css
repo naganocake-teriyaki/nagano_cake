@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+ 
+ 
+ .signup-wrapper{
+  background-image: image-url('logo.jpg');
+}
