@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     get "information/edit"=>"customers#edit"
     patch "information"=>"customers#update"
     get "confirm_withdraw"=>"customers#confirm_withdraw"
-    patch "withdrawal"=>"customers#withdrawal"
+    patch "withdraw"=>"customers#withdraw"
     #get 'shipping_address', to: 'customers#shipping_address'
   end
   resources :cart_items, only: [:index, :update, :create, :destroy, :all_destroy] do
