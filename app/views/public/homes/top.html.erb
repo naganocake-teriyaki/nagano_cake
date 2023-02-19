@@ -1,28 +1,30 @@
 <div class="container-fluid mt-5" 
      style="height: 800px">
   <div class="row d-flex justify-content-center mx-auto">
-    <div class="col-2 border border-dark" 
+    <div class="col-2 border border-white" 
          style="height: 300px"> 
       
     </div>
     
     <div class="col-6  ms-5" 
-         style="height: 700px">
-      <div class="col border border-dark" 
-           style="padding-bottom: 50px">
-        <div class="col-6 mx-auto border border-dark"
-             style="margin-top: 50px;
-                    padding-top: 35px;
-                    height: 250px; background-image: url('logo.jpg');">
-         
-         <div class="signup-wrapper">
-         </div>
-          <p class="margin-top: 50px">
-            ようこそ、ながのCAKEへ！<br>
+         style="height: 400px">
+      <div class="col border border-white" 
+           style="padding-bottom: 40px">
+        <div class="card" style="max-width: 500px;">
+          <%= image_tag "logotop.jpg", alt: "...", height: "400px", width: "700px"  %>
+          <div class="card-img-overlay">
+            <p class="text-brown">
+              ようこそ、ながのCAKEへ！<br>
             このサイトは、ケーキ販売のECサイトになります。<br>
             会員でない方も商品の閲覧はできますが、<br>
             購入には会員登録が必要になります。
-          </p>        
+            </p>
+        </div>
+        </div>
+        <div class="col-6 mx-auto border border-white"
+             style="margin-top: 1px;
+                    padding-top: 1px;
+                    height: 2px; ">
         </div> 
       </div>
       <div class="row py-3 mx-3 mt-5 justify-content-left">
@@ -32,7 +34,8 @@
             <% @items.each do |item| %>
               <td class="new_item_table">
                 <%= link_to public_item_path(item) do %>
-                  <%= image_tag item.get_image, class: "new_item_image"  %>
+                  <%= image_tag　"logotop.jpg" , class: "new_item_image"  %>
+                  
                   <p class="figure-caption"><%= item.name %></p>
                   <p class="figure-caption">¥<%= item.with_tax_price %></p>
                 <% end %>
