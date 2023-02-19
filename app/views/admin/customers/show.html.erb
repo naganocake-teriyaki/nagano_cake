@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 my-5">
-      <h4><strong class="px-6" style="background-color:silver"><%= @customer.last_name %> <%= @customer.first_name %>さんの会員詳細</strong></h4>
+      <h4><strong class="px-8" style="background-color:silver"><%= @customer.last_name %> <%= @customer.first_name %>さんの会員詳細</strong></h4>
     </div>
-    <div class="col-7 mx-auto">
+    <div class="col-10 mx-auto">
       <table class="table table-borderless">
         <tr>
           <th>会員ID</th>
@@ -38,6 +38,10 @@
           <% end %>
         </tr>
       </table>
+      <tr>
+        <td><%= link_to "　編集する　", edit_admin_customer_path(@customer.id), class: 'btn btn-success' %></td>
+        <td><%= link_to "　注文履歴一覧を見る　", admin_root_path, class: 'btn btn-primary' %></td>
+      </tr>
     </div>
   </div>
 </div>
