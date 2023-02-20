@@ -24,10 +24,10 @@ class Public::CartItemsController < ApplicationController
     redirect_to public_cart_items_path, notice: "商品の削除に成功しました"
   end
 
-  def destroy_all
+  def all_destroy
     @cart_items = current_customer.cart_items
-    @cart_items.destroy_all
-    redirect_to public_cart_items_path, notice: "カート内を空にしました"
+    @cart_items.all_destroy
+    redirect_to items_path, notice: "カート内を空にしました"
   end
 
   def create

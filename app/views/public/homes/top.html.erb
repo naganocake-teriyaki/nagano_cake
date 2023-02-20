@@ -33,8 +33,8 @@
           <tr class="d-flex d-block flex-wrap">
             <% @items.each do |item| %>
               <td class="new_item_table">
-                <%= link_to public_item_path(item) do %>
-                  <%= image_tag　"logotop.jpg" , class: "new_item_image"  %>
+                <%= link_to item_path(item) do %>
+                  <%= image_tag "logo2.jpg" , class: "new_item_image", height: "150px", width: "150px"  %>
                   
                   <p class="figure-caption"><%= item.name %></p>
                   <p class="figure-caption">¥<%= item.with_tax_price %></p>
