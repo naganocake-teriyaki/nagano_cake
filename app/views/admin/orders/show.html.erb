@@ -31,13 +31,13 @@
         <tr>
           <th>注文ステータス</th>
           <td>
-            <%= form_with model:@order, url: admin_order_path, method: :patch, local:true do |f| %>
+            <%= form_with model: @order, url: admin_order_path, method: :patch, local:true do |f| %>
             <%= f.select :status , Order.statuses.keys, class: "status" %>&ensp;
             <%= f.submit '更新'  ,class: "btn btn-success" %>
             <% end %>
           </td>
-        </tr>
       </table>
+        </tr>
     </div>
   </div>
   <div class="row mb-3">
@@ -54,14 +54,14 @@
           </tr>
         </thead>
         <tbody>
-          <% @order.order_items.each do |f| %>
+          <% @order.order_details.each do |f| %>
           <tr>
             <td><%= f.item.name %></td>
             <td><%= tax_price(f.product.price) %></td>
-            <td><%= f.quantity %></td>
+            <td><%= f.amount %></td>
             <td><%= sub_price(f) %></td>
             <td>
-              <%= form_with model:f , url: manager_order_product_path(f), method: :patch, local:true do |form| %>
+              <%= form_with model:f , url: admin_order_detail_path(f), method: :patch, local:true do |form| %>
               <%= form.select :making_status, OrderProduct.making_statuses.keys, class: "making_status"  %>&ensp;
               <%= form.submit '更新'  ,class: "btn btn-success" %>
             </td>
