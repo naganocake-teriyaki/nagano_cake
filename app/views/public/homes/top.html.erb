@@ -29,9 +29,9 @@
             <% @items.each do |item| %>
               <td class="new_item_table">
                 <%= link_to item_path(item) do %>
-                  <%= image_tag item.get_image, class: "new_item_image"  %>
+                  <%= image_tag item.image, class: "new_item_image"  %>
                   <p class="figure-caption"><%= item.name %></p>
-                  <p class="figure-caption">¥<%= item.with_tax_price %></p>
+                  <p class="figure-caption">¥<%= item.price %></p>
                 <% end %>
               </td>
             <% end %>
