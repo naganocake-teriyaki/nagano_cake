@@ -9,7 +9,7 @@ class Public::CartItemsController < ApplicationController
   def update
     @cart_item = CartItem.find(params[:id])
     if @cart_item.update(cart_item_params)
-      redirect_to public_cart_items_path, notice: "数量の変更を保存しました"
+      redirect_to cart_items_path, notice: "数量の変更を保存しました"
     else
       redirect_to request.referer, alert: "正しい数字を入力してください"
     end
@@ -21,12 +21,12 @@ class Public::CartItemsController < ApplicationController
   def destroy
     @cart_item = CartItem.find(params[:id])
     @cart_item.destroy
-    redirect_to public_cart_items_path, notice: "商品の削除に成功しました"
+    redirect_to cart_items_path, notice: "商品の削除に成功しました"
   end
 
   def all_destroy
     @cart_items = current_customer.cart_items
-    @cart_items.all_destroy
+    @cart_items.destroy_all
     redirect_to items_path, notice: "カート内を空にしました"
   end
 
@@ -43,10 +43,10 @@ class Public::CartItemsController < ApplicationController
     end
     if @cart_item.amount.present?
       @cart_item.save
-      redirect_to public_cart_items_path
+      redirect_to cart_items_path
     else
       flash[:select_alert] = "※商品の個数を選択してください"
-      redirect_to public_item_path(@cart_item.item)
+      redirect_to item_path(@cart_item.item.id)
     end
   end
 

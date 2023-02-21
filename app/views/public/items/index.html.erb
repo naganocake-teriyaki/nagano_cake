@@ -1,23 +1,22 @@
-<div class="row ms-4 py-3 ml-3"
-     style="height: 800px">
-  <div class="col py-3 mx-3 justify-content-center">
+<div class="col py-3 mx-3 justify-content-center">
     <h3>商品一覧(全<%= @all_items.count %>件)</h3>
-    <table class="table table-borderless">
-      <tr class="d-flex">
+    　<div class="row ms-4 py-3 ml-3"
+    　　style="height: 800px">
+        
         <% @items.each do |item| %>
-          <td class="new_item_table">
+          <div class="p-3">
             <%= link_to item_path(item) do %>
-              <%= image_tag item.get_image, size: "450x300", class: "new_item_image" %>
+              <%= image_tag item.get_image, size: "300x300", class: "new_item_image" %>
               <p class="figure-caption"><%= item.name %></p>
               <p class="figure-caption">¥<%= item.with_tax_price %></p>
             <% end %>
-          </td>
+          </div> 
         <% end %>
-      </tr>
-    </table>
+        
+    
+  </div>
+  <div class= "row justify-content-center">
+  <%= paginate @items %>
   </div>
 </div>
 
-<div class="col text-right">
-  <%= paginate @items %>
-</div>
