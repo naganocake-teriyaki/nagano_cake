@@ -4,6 +4,7 @@ class Customer < ApplicationRecord
   has_many :addresses,dependent: :destroy
   
   has_one_attached :image
+  has_many :cart_items
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
    
