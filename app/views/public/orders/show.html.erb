@@ -48,7 +48,10 @@
             <tr>
               <td class="table-active text">商品合計</td>
               <td class="light-text">
-                <%= @order.payment - @order.postage %>
+                 <% @order_details.each do |order_detail| %>
+                 <% @total += order_detail.price * order_detail.amount %>
+                <% end %>
+                <%= @total %>
               </td>
             </tr>
             <tr>
@@ -57,7 +60,7 @@
             </tr>
             <tr>
               <td class="table-active text">ご請求額</td>
-              <td class="light-text"><%= @order.payment %></td>
+              <td class="light-text"><%= @total + @order.postage %></td>
             </tr>
           </tbody>
         </table>
@@ -83,11 +86,12 @@
         <tbody>
           <% @order_details.each do |order_detail| %>
           <tr class="light-text">
-            <td><%= order_detail.item_id %></td>
+            <td><%= order_detail.item.name %></td>
             <td><%= order_detail.price %></td>
             <td><%= order_detail.amount %></td>
             <td>
               <%= order_detail.price * order_detail.amount %>
+              <% @total += order_detail.price * order_detail.amount %>
             </td>
           </tr>
           <% end %>

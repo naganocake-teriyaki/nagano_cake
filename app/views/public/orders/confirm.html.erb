@@ -25,6 +25,7 @@
             <td><%= cart_item.item.with_tax_price %></td>
             <td><%= cart_item.amount %></td>
             <td><%= cart_item.item.with_tax_price * cart_item.amount %>円</td>
+            <% @total += cart_item.item.with_tax_price * cart_item.amount %>
           <% end %>
           </tr>
         </tbody>
@@ -43,14 +44,17 @@
         <tbody class="light-text">
           <td><%= @order.postage %></td>
           <td><%= current_customer.total_amount %></td>
+          <!-- +=でトータルの中に800を追加 -->
+          <td><%= @total += 800 %>円</td>
         </tbody>
       </table>
     </div>
   </div>
 
       <h4 class="mt-4 text"><支払い方法></h4>
+      <!-- 記述ミス　ここがPaymentになってたせいで支払金額が０か１しか格納されてなかった。payment_methodに変更-->
         <div class="light-text">
-          <% if @order.payment==0 %>
+          <% if @order.payment_method==0 %>
           <%= Order.payment_methods_i18n[:credit_card] %>
           <% else %>
           <%= Order.payment_methods_i18n[:transfer] %>
@@ -64,7 +68,8 @@
 
       <%= form_with model: @order, url: orders_path, method: :POST, local: true do |f| %>
         <%= f.hidden_field :customer_id, :value => current_customer.id %>
-        <%= f.hidden_field :payment, :value => @order.payment %>
+        <!-- paymentに上で記載した@totalの金額を入れる -->
+        <%= f.hidden_field :payment, :value => @total %>　
         <%= f.hidden_field :postage, :value => @order.postage %>
         <%= f.hidden_field :postal_code, :value => @order.postal_code %>
         <%= f.hidden_field :address, :value => @order.address %>
