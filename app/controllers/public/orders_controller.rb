@@ -30,10 +30,14 @@ class Public::OrdersController < ApplicationController
       @order.address = current_customer.address
       @order.name = current_customer.last_name + current_customer.first_name
     elsif params[:order_address] == "option2"
-      @address = Address.find(params[:order][:address_id])
-      @order.address = @address.address
-      @order.name = @address.name
-      @order.postal_code = @address.postal_code
+      if @address = Address.find(params[:order][:address_id])
+      
+        @order.address = @address.address
+        @order.name = @address.name
+        @order.postal_code = @address.postal_code
+      else
+      render :new
+      end
     elsif params[:order_address] == "option3"
     end
     @total = 0
@@ -43,7 +47,8 @@ class Public::OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    @order.save
+
+    if @order.save
 
     current_customer.cart_items.each do |cart_item|
       @order_detail = OrderDetail.new
@@ -53,16 +58,20 @@ class Public::OrdersController < ApplicationController
       @order_detail.amount = cart_item.amount
       @order_detail.save!
     end
-
     current_customer.cart_items.destroy_all
 
     redirect_to thanks_orders_path
+    else
+      render :new
+    end
+
+    
   end
 
   private
 
   def order_params
-    params.require(:order).permit(:customer_id, :payment, :postage, :postal_code, :address, :name)
+    params.require(:order).permit(:customer_id, :payment, :postage, :postal_code, :address, :name, :payment_method)
   end
 
 end
