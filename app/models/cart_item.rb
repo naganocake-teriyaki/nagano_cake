@@ -12,6 +12,5 @@ class CartItem < ApplicationRecord
     end
     puts 'test3'
     return total
-  end
-
+   end
 end

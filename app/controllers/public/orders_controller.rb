@@ -7,11 +7,13 @@ class Public::OrdersController < ApplicationController
   end
   
   def show
+    @total = 0
     @order = Order.find(params[:id])
     @order_details = @order.order_details
   end
   
   def index
+    @total = 0
     @orders = current_customer.orders
   end
   
@@ -34,7 +36,7 @@ class Public::OrdersController < ApplicationController
       @order.postal_code = @address.postal_code
     elsif params[:order_address] == "option3"
     end
-
+    @total = 0
     @cart_items=current_customer.cart_items
     @payment = 0
   end
