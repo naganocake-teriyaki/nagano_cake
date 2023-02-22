@@ -43,9 +43,6 @@
         <tbody class="light-text">
           <td><%= @order.postage %></td>
           <td><%= current_customer.total_amount %></td>
-          <% @order_details.each do |order_detail| %>
-          <td><%= order_detail.price * order_detail.amount %></td>
-          <% end %>
         </tbody>
       </table>
     </div>

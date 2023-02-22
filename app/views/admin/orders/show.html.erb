@@ -11,7 +11,7 @@
       <table class="table table-borderless">
         <tr>
           <th>購入者</th>
-          <td><%= link_to @order.customer.name, admin_customer_path(@customer) %></td>
+          <td><%= link_to @order.customer.last_name + @order.customer.first_name %></td>
         </tr>
         <tr>
           <th>注文日</th>
@@ -57,16 +57,16 @@
           <% @order.order_details.each do |f| %>
           <tr>
             <td><%= f.item.name %></td>
-            <td><%= tax_price(f.product.price) %></td>
+            <td><%= tax_with_price(f.item.price) %></td>
             <td><%= f.amount %></td>
             <td><%= sub_price(f) %></td>
             <td>
               <%= form_with model:f , url: admin_order_detail_path(f), method: :patch, local:true do |form| %>
-              <%= form.select :making_status, OrderProduct.making_statuses.keys, class: "making_status"  %>&ensp;
+              <%= form.select :making_status, OrderDetail.making_statuses.keys, class: "making_status"  %>&ensp;
               <%= form.submit '更新'  ,class: "btn btn-success" %>
+              <% end %>
             </td>
           </tr>
-            <% end %>
           <% end %>
         </tbody>
       </table>
@@ -75,9 +75,7 @@
       <table class="table table-borderless">
         <tr>
           <th>商品合計</th>
-
           <td><%= @order.payment - @order.postage %></td>
-
         </tr>
         <tr>
           <th>送料</th>
