@@ -15,11 +15,13 @@ class Order < ApplicationRecord
     puts 'test3'
     return total
   end
+  
+
 
    after_update do
       if self.status == "入金確認"
-        self.order_lists.each {|order_list|
-        order_list.update(production_status: "製作待ち")
+        self.order_details.each {|order_detail|
+        order_detail.update(making_status: "製作待ち")
         }
       end
     end

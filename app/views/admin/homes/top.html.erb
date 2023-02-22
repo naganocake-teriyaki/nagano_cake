@@ -20,7 +20,7 @@
                 <u><%= link_to order.created_at.strftime("%Y-%m-%d %H:%M:%S"), admin_order_path(order) %></u>
               </td>
               <td class="align-middle"><%= order.customer.last_name %> <%= order.customer.first_name %></td>
-              <td class="align-middle text-center"><%= order.items_amount %></td>
+              <td class="align-middle text-center"><%= order.order_details.sum(:amount) %></td>
               <td class="align-middle text-center"><%= order.status_i18n %></td>
             </tr>
           <% end %>
