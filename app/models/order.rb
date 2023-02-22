@@ -14,6 +14,8 @@ class Order < ApplicationRecord
     puts 'test3'
     return total
   end
+  
+
 
    after_update do
       if self.status == "入金確認"
