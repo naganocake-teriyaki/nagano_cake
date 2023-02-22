@@ -11,7 +11,7 @@
       <table class="table table-borderless">
         <tr>
           <th>購入者</th>
-          <td><%= @order.customer.last_name + @order.customer.first_name %></td>
+          <td><%= link_to @order.customer.last_name + @order.customer.first_name, admin_customer_path %></td>
         </tr>
         <tr>
           <th>注文日</th>
