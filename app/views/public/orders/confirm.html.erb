@@ -54,7 +54,7 @@
       <h4 class="mt-4 text"><支払い方法></h4>
       <!-- 記述ミス　ここがPaymentになってたせいで支払金額が０か１しか格納されてなかった。payment_methodに変更-->
         <div class="light-text">
-          <% if @order.payment_method==0 %>
+          <% if @order.payment_method=="credit_card" %>
           <%= Order.payment_methods_i18n[:credit_card] %>
           <% else %>
           <%= Order.payment_methods_i18n[:transfer] %>
