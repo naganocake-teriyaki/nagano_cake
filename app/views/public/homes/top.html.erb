@@ -1,16 +1,4 @@
-<div class="container-fluid mt-5" 
-     style="height: 800px">
-  <div class="row d-flex justify-content-center mx-auto">
-    <div class="col-2 border border-white" 
-         style="height: 300px"> 
-      
-    </div>
-    
-    <div class="col-6  ms-5" 
-         style="height: 400px">
-      <div class="col border border-white" 
-           style="padding-bottom: 40px">
-        <div class="card" style="max-width: 500px;">
+　　　　<div class="card mx-auto" style="max-width: 700px;">
           <%= image_tag "logotop.jpg", alt: "...", height: "400px", width: "700px"  %>
           <div class="card-img-overlay">
             <p class="text-brown">
@@ -19,18 +7,14 @@
             会員でない方も商品の閲覧はできますが、<br>
             購入には会員登録が必要になります。
             </p>
+          </div>
         </div>
-        </div>
-        <div class="col-6 mx-auto border border-white"
-             style="margin-top: 1px;
-                    padding-top: 1px;
-                    height: 2px; ">
-        </div> 
-      </div>
-      <div class="row py-3 mx-3 mt-5 justify-content-left">
+        
+     
+      <div class="row py-3 mx-3 mt-5 justify-content-around">
         <h2>新着商品</h2>
         <table class="table table-borderless">
-          <tr class="d-flex d-block flex-wrap">
+          <tr class="d-flex d-block flex-wrap justify-content-center">
             <% @items.each do |item| %>
               <td class="new_item_table">
                 <%= link_to item_path(item) do %>
@@ -46,6 +30,4 @@
       <div class="col text-end">
        <p class="text-right"><%= link_to "全ての商品を見る>", items_path %></p>
       </div>
-    </div>
-  </div>
-</div>
+  
