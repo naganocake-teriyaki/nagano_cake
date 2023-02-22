@@ -16,10 +16,10 @@
               支払い方法
             </h4>
               <div class="light-text">
-                <%= f.radio_button :payment, 0 %>
-                <%= f.label :payment, "クレジットカード" %>
-                <%= f.radio_button :payment, 1 %>
-                <%= f.label :payment, "銀行振込" %>
+                <%= f.radio_button :payment_method, 0, :checked => true %>
+                <%= f.label :payment_method, "クレジットカード" %>
+                <%= f.radio_button :payment_method, 1 %>
+                <%= f.label :payment_method, "銀行振込" %>
               </div>
 
               <h4 class="text">
@@ -55,9 +55,9 @@
                     <%= f.label :postal_code, "郵便番号（ハイフンなし）" %>
                     <%= f.text_field :postal_code, placeholder: "0000000" %></br>
                     <%= f.label :address, "住所　　　　　　　　　　" %>
-                    <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0" %></br>
+                    <%= f.text_field :address, placeholder: "東京都下北沢一丁目" %></br>
                     <%= f.label :name, "宛名　　　　　　　　　　" %>
-                    <%= f.text_field :name, placeholder: "令和道子" %></br>
+                    <%= f.text_field :name, placeholder: "長野太郎" %></br>
                   </div>
                 </div>
 
