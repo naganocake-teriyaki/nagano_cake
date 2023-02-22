@@ -5,10 +5,10 @@ class Public::OrdersController < ApplicationController
     @order = Order.new
     @addresses = current_customer.addresses
   end
-    
+  
   def show
     @order = Order.find(params[:id])
-    @order_lists = @order.order_details
+    @order_details = @order.order_details
   end
   
   def index
@@ -20,6 +20,7 @@ class Public::OrdersController < ApplicationController
   
   def confirm
     @order = Order.new(order_params)
+    @order.postage=800
     @order.customer_id = current_customer.id
     
     if params[:order_address] == "option1"
@@ -43,17 +44,17 @@ class Public::OrdersController < ApplicationController
     @order.save
     
     current_customer.cart_items.each do |cart_item|
-      @order_list = OrderList.new
-      @order_list.order_id = @order.id
-      @order_list.item_id = cart_item.item_id
-      @order_list.item_price =cart_item.item.tax_excluded_price*1.1
-      @order_list.quantity = cart_item.quantity
-      @order_list.save!
+      @order_detail = OrderDetail.new
+      @order_detail.order_id = @order.id
+      @order_detail.item_id = cart_item.item_id
+      @order_detail.price =cart_item.item.price*1.1
+      @order_detail.amount = cart_item.amount
+      @order_detail.save!
     end
 
     current_customer.cart_items.destroy_all
 
-    redirect_to success_orders_path
+    redirect_to thanks_orders_path
   end
   
   private

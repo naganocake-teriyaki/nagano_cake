@@ -81,13 +81,13 @@
           </tr>
         </thead>
         <tbody>
-          <% @order_lists.each do |order_list| %>
+          <% @order_details.each do |order_detail| %>
           <tr class="light-text">
-            <td><%= order_list.item.item_name %></td>
-            <td><%= order_list.item_price %></td>
-            <td><%= order_list.amount %></td>
+            <td><%= order_detail.item_id %></td>
+            <td><%= order_detail.price %></td>
+            <td><%= order_detail.amount %></td>
             <td>
-              <%= order_list.item_price * order_list.quantity %>
+              <%= order_detail.price * order_detail.amount %>
             </td>
           </tr>
           <% end %>
