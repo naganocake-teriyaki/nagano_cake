@@ -21,11 +21,10 @@
         <tbody>
           <% @cart_items.each do |cart_item| %>
           <tr class="light-text">
-            <td><%= cart_item.item.item_name %></td>
+            <td><%= cart_item.item.name %></td>
             <td><%= cart_item.item.with_tax_price %></td>
-            <td><%= cart_item.quantity %></td>
-            <td><%= cart_item.subtotal %></td>
-            <% @total_payment += cart_item.subtotal %>
+            <td><%= cart_item.amount %></td>
+            <td><%= cart_item.item.with_tax_price * cart_item.amount %>円</td>
           <% end %>
           </tr>
         </tbody>
@@ -43,8 +42,10 @@
         </thead>
         <tbody class="light-text">
           <td><%= @order.postage %></td>
-          <td><%= @total_payment %></td>
-          
+          <td><%= current_customer.total_amount %></td>
+          <% @order_details.each do |order_detail| %>
+          <td><%= order_detail.price * order_detail.amount %></td>
+          <% end %>
         </tbody>
       </table>
     </div>
@@ -67,7 +68,7 @@
       <%= form_with model: @order, url: orders_path, method: :POST, local: true do |f| %>
         <%= f.hidden_field :customer_id, :value => current_customer.id %>
         <%= f.hidden_field :payment, :value => @order.payment %>
-        <%= f.hidden_field :invoice, :value => @order.postage %>
+        <%= f.hidden_field :postage, :value => @order.postage %>
         <%= f.hidden_field :postal_code, :value => @order.postal_code %>
         <%= f.hidden_field :address, :value => @order.address %>
         <%= f.hidden_field :name, :value => @order.name %>
