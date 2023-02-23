@@ -30,7 +30,7 @@
               税込価格<br>
               （税抜価格）
             </th>
-            <td class="col-4 h5 font-weight-bold"><%= @item.price.to_s(:delimited) %>円<br>
+            <td class="col-4 h5 font-weight-bold"><%= @item.with_tax_price.to_s(:delimited) %>円<br>
               （<%= number_with_delimiter(@item.price) %>円）
             </td>
           </tr>
