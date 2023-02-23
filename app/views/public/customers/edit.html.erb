@@ -6,7 +6,7 @@
       </h4>
     </div>
   </div>
-  
+
   <% if @customer.errors.any? %>
     <h3>
     <%= @customer.errors.count %>errors prohibited this obj from being saved:
@@ -17,7 +17,7 @@
         <% end %>
       </ul>
   <% end %>
-  
+
   <div class="row mt-5">
     <div class="col-sm-12 col-md-8 px-5 px-sm-0 mr-auto">
       <%= form_with model: @customer, url: information_customers_path, method: :patch do |f| %>
@@ -34,10 +34,10 @@
           <tr>
             <th>フリガナ</th>
             <th>
-              <%= f.text_field :last_name_kana, placeholder: "カナ性", size: 25, class: "textlines-radius" %>
+              <%= f.text_field :kana_last_name, placeholder: "カナ姓", size: 25, class: "textlines-radius" %>
             </th>
             <th>
-              <%= f.text_field :first_name_kana, placeholder: "カナ名", size: 25, class: "textlines-radius" %>
+              <%= f.text_field :kana_first_name, placeholder: "カナ名", size: 25, class: "textlines-radius" %>
             </th>
           </tr>
           <tr>
