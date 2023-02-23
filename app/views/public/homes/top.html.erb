@@ -1,0 +1,33 @@
+　　　　<div class="card mx-auto" style="max-width: 700px;">
+          <%= image_tag "logotop.jpg", alt: "...", height: "400px", width: "700px"  %>
+          <div class="card-img-overlay">
+            <p class="text-brown">
+              ようこそ、ながのCAKEへ！<br>
+            このサイトは、ケーキ販売のECサイトになります。<br>
+            会員でない方も商品の閲覧はできますが、<br>
+            購入には会員登録が必要になります。
+            </p>
+          </div>
+        </div>
+        
+     
+      <div class="row py-3 mx-3 mt-5 justify-content-around">
+        <h2>新着商品</h2>
+        <table class="table table-borderless">
+          <tr class="d-flex d-block flex-wrap justify-content-center">
+            <% @items.each do |item| %>
+              <td class="new_item_table">
+                <%= link_to item_path(item) do %>
+                  <%= image_tag item.get_image, class: "new_item_image", height: "150px", width: "150px"  %>
+                  <p class="figure-caption"><%= item.name %></p>
+                  <p class="figure-caption">¥<%= item.with_tax_price %></p>
+                <% end %>
+              </td>
+            <% end %>
+          </tr>
+        </table>
+      </div>
+      <div class="col text-end">
+       <p class="text-right"><%= link_to "全ての商品を見る>", items_path %></p>
+      </div>
+  

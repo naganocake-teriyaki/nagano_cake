@@ -1,0 +1,22 @@
+<div class="col py-3 mx-3 justify-content-center">
+    <h3>商品一覧(全<%= @all_items.count %>件)</h3>
+    　<div class="row ms-4 py-3 ml-3"
+    　　style="height: 800px">
+        
+        <% @items.each do |item| %>
+          <div class="p-3">
+            <%= link_to item_path(item) do %>
+              <%= image_tag item.get_image, size: "280x280", class: "new_item_image text-right" %>
+              <p class="figure-caption"><%= item.name %></p>
+              <p class="figure-caption">¥<%= item.with_tax_price %></p>
+            <% end %>
+          </div> 
+        <% end %>
+        
+    
+  </div>
+  <div class= "row justify-content-center">
+  <%= paginate @items %>
+  </div>
+</div>
+

@@ -7,7 +7,6 @@ class CreateItems < ActiveRecord::Migration[6.1]
       t.integer :price, null: false
       t.boolean :is_active, null: false, default: true
       t.timestamps
-      has_one_attached :image
     end
   end
 end
