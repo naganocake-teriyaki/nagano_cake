@@ -6,7 +6,7 @@
         <% @items.each do |item| %>
           <div class="p-3">
             <%= link_to item_path(item) do %>
-              <%= image_tag item.get_image, size: "300x300", class: "new_item_image" %>
+              <%= image_tag item.get_image, size: "280x280", class: "new_item_image text-right" %>
               <p class="figure-caption"><%= item.name %></p>
               <p class="figure-caption">¥<%= item.with_tax_price %></p>
             <% end %>
