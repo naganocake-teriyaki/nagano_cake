@@ -119,7 +119,7 @@ ActiveRecord::Schema.define(version: 2023_02_16_022702) do
     t.integer "customer_id", null: false
     t.integer "postage", null: false
     t.integer "payment", null: false
-    t.integer "payment_method", default: 0, null: false
+    t.integer "payment_method", null: false
     t.string "name", null: false
     t.string "address", null: false
     t.string "postal_code", null: false
