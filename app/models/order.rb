@@ -15,7 +15,7 @@ class Order < ApplicationRecord
     puts 'test3'
     return total
   end
-  
+
 
 
    after_update do
