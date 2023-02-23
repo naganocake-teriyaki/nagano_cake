@@ -12,7 +12,11 @@ class Item < ApplicationRecord
       validates :price, presence: true
 
       def get_image
-        (image.attached?) ? image : 'logo2.jpg'
+        unless image.attached?
+          file_path = Rails.root.join('app/assets/images/logo2.jpeg')
+          image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+        end
+        image
       end
 
       def with_tax_price

@@ -68,7 +68,7 @@ item =Item.create(
     genre_id: genre_pudding.id,
     name: "本格プリン",
     price: 1200,
-    description: "注文殺到！希少な純国産ブランド卵を使ったまるでクリームみたいなもなめらかプリン",
+    description: "注文殺到！希少な純国産ブランド卵を使ったまるでクリームみたいななめらかプリン",
     is_active: true)
     item.image.attach(io: File.open(Rails.root.join('app/assets/images/purin.png')),
                   filename: 'purin.png')
